@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  brand_owner: 
+  product_name: MyString
+  barcode: 1
+  small_image: MyString
+  splash_image: MyString
+  active: false
+
+two:
+  brand_owner: 
+  product_name: MyString
+  barcode: 1
+  small_image: MyString
+  splash_image: MyString
+  active: false

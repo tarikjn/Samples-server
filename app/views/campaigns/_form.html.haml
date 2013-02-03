@@ -1,0 +1,28 @@
+= form_for @campaign do |f|
+  - if @campaign.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@campaign.errors.count, "error")} prohibited this campaign from being saved:"
+      %ul
+        - @campaign.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :brand_owner
+    = f.text_field :brand_owner
+  .field
+    = f.label :product_name
+    = f.text_field :product_name
+  .field
+    = f.label :barcode
+    = f.number_field :barcode
+  .field
+    = f.label :small_image
+    = f.text_field :small_image
+  .field
+    = f.label :splash_image
+    = f.text_field :splash_image
+  .field
+    = f.label :active
+    = f.check_box :active
+  .actions
+    = f.submit 'Save'
