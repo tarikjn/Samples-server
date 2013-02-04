@@ -13,3 +13,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Exclude Foreman-loaded env vars with sensitive information
+.env
