@@ -1,4 +1,6 @@
-%h1 Listing campaigns
+.head
+  %h1 Campaigns
+  .add= link_to 'New', new_campaign_path
 
 %table
   %tr
@@ -25,5 +27,3 @@
       %td= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-
-= link_to 'New Campaign', new_campaign_path
