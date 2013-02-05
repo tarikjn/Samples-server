@@ -4,11 +4,8 @@
 
 %table
   %tr
-    %th Brand owner
     %th Product name
-    %th Barcode
     %th Small image
-    %th Splash image
     %th Active
     %th
     %th
@@ -16,11 +13,8 @@
 
   - @campaigns.each do |campaign|
     %tr
-      %td= campaign.brand_owner
       %td= campaign.product_name
-      %td= campaign.barcode
-      %td= campaign.small_image
-      %td= campaign.splash_image
+      %td= image_tag campaign.small_image.url
       %td= campaign.active
       %td= link_to 'Show', campaign
       %td= link_to 'Edit', edit_campaign_path(campaign)

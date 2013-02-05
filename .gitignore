@@ -16,3 +16,4 @@
 
 # Exclude Foreman-loaded env vars with sensitive information
 .env
+/public/system/

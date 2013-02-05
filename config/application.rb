@@ -63,5 +63,7 @@ module Backend
     config.generators do |g|
       g.template_engine :haml
     end
+
+    config.middleware.insert 1, 'Dragonfly::Middleware', :images
   end
 end

@@ -1,9 +1,6 @@
 %p#notice= notice
 
 %p
-  %b Brand owner:
-  = @campaign.brand_owner
-%p
   %b Product name:
   = @campaign.product_name
 %p
@@ -11,10 +8,10 @@
   = @campaign.barcode
 %p
   %b Small image:
-  = @campaign.small_image
+  = image_tag @campaign.small_image.url
 %p
   %b Splash image:
-  = @campaign.splash_image
+  = image_tag @campaign.splash_image.url
 %p
   %b Active:
   = @campaign.active

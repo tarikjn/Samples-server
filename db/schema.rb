@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202100415) do
+ActiveRecord::Schema.define(:version => 20130205093451) do
 
   create_table "campaigns", :force => true do |t|
     t.integer  "brand_owner_id"
     t.string   "product_name"
-    t.integer  "barcode"
-    t.string   "small_image"
-    t.string   "splash_image"
+    t.string   "barcode"
+    t.string   "small_image_uid"
+    t.string   "splash_image_uid"
     t.boolean  "active"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "campaigns", ["brand_owner_id"], :name => "index_campaigns_on_brand_owner_id"

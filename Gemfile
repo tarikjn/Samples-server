@@ -9,6 +9,10 @@ gem 'rails', '3.2.11'
 gem 'pg'
 gem 'thin'
 
+# for image upload
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly', '~>0.9.12'
+gem 'fog'
 
 # Gems used only for assets and not required
 # in production environments by default.
