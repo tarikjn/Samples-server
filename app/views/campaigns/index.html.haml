@@ -1,23 +1,18 @@
 .head
   %h1 Campaigns
-  .add= link_to 'New', new_campaign_path
+  .add= link_to 'New', new_campaign_path, :class => 'action'
 
 %table
-  %tr
-    %th Product name
-    %th Small image
-    %th Active
-    %th
-    %th
-    %th
-
   - @campaigns.each do |campaign|
     %tr
-      %td= campaign.product_name
-      %td= image_tag campaign.small_image.url
-      %td= campaign.active
-      %td= link_to 'Show', campaign
-      %td= link_to 'Edit', edit_campaign_path(campaign)
-      %td= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' }
+      %td.image= image_tag campaign.small_image.url
+      %td.title= link_to campaign.product_name, campaign
+      %td.status= campaign.status_caption
+      %td.count
+        = link_to "#" do
+          %span.scan-count= campaign.scan_count
+          scans
+      %td.action= link_to 'Edit', edit_campaign_path(campaign)
+      %td.action= link_to 'Delete', campaign, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

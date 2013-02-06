@@ -15,6 +15,15 @@ class Campaign < ActiveRecord::Base
 
   before_create :assign_owner
 
+  def status_caption
+    self.active ? 'active':'inactive'
+  end
+
+  def scan_count
+    0
+  end
+
+private
   def assign_owner
     self.brand_owner_id = 0
   end

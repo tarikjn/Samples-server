@@ -1,12 +1,33 @@
 body {
   font-family: Verdana, Geneva, sans-serif;
-  margin: 15px auto;
-  width: 760px;
+  margin: 0; padding: 0;
 }
 
-.logo {
-	color: blue;
-  font-size: 14pt;
-  font-weight: bold;
-	margin-bottom: 35px;
+.header {
+  background: #F4F4F4;
+
+  .logo {
+    padding: 20px 0 10px;
+    margin: 0 auto;
+    width: 760px;
+
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 35px;
+
+    a {
+      text-decoration: none;
+      color: #0000CD !important;
+
+      &:hover {
+        background: none;
+      }
+    }
+  }
+}
+
+
+.page {
+  margin: 15px auto;
+  width: 760px;
 }
