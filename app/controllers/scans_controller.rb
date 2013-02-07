@@ -1,27 +1,29 @@
 class ScansController < ApplicationController
   before_filter :restrict_access
   respond_to :json
+  skip_before_filter :verify_authenticity_token
 
   # POST /scans
   # POST /scans.json
   def create
     # save scan not matter what
     @scan = Scan.new(:barcode => params[:barcode])
+    @scan.user = @current_user
     @scan.save
 
     @product = Campaign.find_by_barcode(params[:barcode])
 
     if @product
-      @redeem = Redeen.where(:user => @current_user, :product => @product)
+      @redeem = Redeem.where(:user_id => @current_user.id, :product_id => @product.id).first
       status = @redeem ? 403 : 200
 
       render json: {
-          product_name: @product.name,
-          small_image: @product.small_image_url,
-          splash_image: @product.splash_image_url
+          product_name: @product.product_name,
+          small_image: @product.small_image.url,
+          splash_image: @product.splash_image.url
         }, status: status
     else
-      render :status => 404
+      render :nothing => true, :status => 404
     end
   end
 end

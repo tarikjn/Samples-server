@@ -20,17 +20,11 @@
     = f.hidden_field :retained_small_image
     = f.file_field :small_image
   .field
-    = f.label :small_image_url
-    = f.text_field :small_image_url
-  .field
     = image_tag @campaign.splash_image.url if @campaign.splash_image_uid
   .field
     = f.label :splash_image
     = f.hidden_field :retained_splash_image
     = f.file_field :splash_image
-  .field
-    = f.label :splash_image_url
-    = f.text_field :splash_image_url
   .field
     = f.label :active
     = f.check_box :active

@@ -1,24 +1,32 @@
 class RedeemsController < ApplicationController
   before_filter :restrict_access
   respond_to :json
+  skip_before_filter :verify_authenticity_token
 
-  # POST /scans
-  # POST /scans.json
+  # POST /redeems
   def create
     @product = Campaign.find_by_barcode(params[:barcode])
 
     if @product
-      @prev_redeem = Redeen.where(:user => @current_user, :product => @product)
+      @prev_redeem = Redeem.where(:user_id => @current_user.id, :product_id => @product.id).first
       if @prev_redeem
-        render status: 403
+        render nothing: true, status: 403
       else
-        @redeem = Redeem.new(:user => @current_user, :product => @product)
+        @redeem = Redeem.new
+        @redeem.user = @current_user
+        @redeem.product = @product
         @redeem.save
 
-        render status: :created
+        render nothing: true, status: :created
       end
     else
-      render :status => 403
+      render nothing: true, :status => 403
     end
+  end
+
+  # GET /redeems
+  def index
+    @redeems = Redeem.where(user_id: @current_user.id).all
+    respond_with @redeems
   end
 end
