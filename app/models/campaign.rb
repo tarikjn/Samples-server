@@ -25,6 +25,6 @@ class Campaign < ActiveRecord::Base
 
 private
   def assign_owner
-    self.brand_owner_id = 0
+    self.owner_id = 0
   end
 end

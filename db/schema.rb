@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206045922) do
+ActiveRecord::Schema.define(:version => 20130207004930) do
 
   create_table "campaigns", :force => true do |t|
     t.integer  "owner_id"
@@ -26,5 +26,13 @@ ActiveRecord::Schema.define(:version => 20130206045922) do
   end
 
   add_index "campaigns", ["owner_id"], :name => "index_campaigns_on_brand_owner_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "facebook_token"
+    t.string   "facebook_id"
+    t.string   "email"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
 end
