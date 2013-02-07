@@ -1,4 +1,10 @@
 Backend::Application.routes.draw do
+  resources :redeems
+
+
+  resources :scans
+
+
   resources :users
 
 

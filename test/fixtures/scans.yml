@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  barcode: MyString
+  user: 
+
+two:
+  barcode: MyString
+  user: 
