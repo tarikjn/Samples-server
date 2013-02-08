@@ -139,6 +139,7 @@ PLATFORMS
 DEPENDENCIES
   dragonfly (~> 0.9.12)
   fog
+  haml
   haml-rails
   jquery-rails
   pg

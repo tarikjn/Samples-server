@@ -8,6 +8,7 @@ gem 'rails', '3.2.11'
 
 gem 'pg'
 gem 'thin'
+gem 'haml'
 
 # for image upload
 gem 'rack-cache', :require => 'rack/cache'
