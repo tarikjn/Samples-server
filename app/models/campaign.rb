@@ -23,6 +23,15 @@ class Campaign < ActiveRecord::Base
     0
   end
 
+  def to_json
+    {
+      product_name: self.product_name,
+      barcode: self.barcode,
+      small_image: self.small_image.url,
+      splash_image: self.splash_image.url
+    }
+  end
+
 private
   def assign_owner
     self.owner_id = 0

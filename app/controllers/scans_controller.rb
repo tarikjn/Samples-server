@@ -17,11 +17,7 @@ class ScansController < ApplicationController
       @redeem = Redeem.where(:user_id => @current_user.id, :product_id => @product.id).first
       status = @redeem ? 403 : 200
 
-      render json: {
-          product_name: @product.product_name,
-          small_image: @product.small_image.url,
-          splash_image: @product.splash_image.url
-        }, status: status
+      render json: @product.to_json, status: status
     else
       render :nothing => true, :status => 404
     end
