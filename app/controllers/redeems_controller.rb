@@ -27,6 +27,7 @@ class RedeemsController < ApplicationController
   # GET /redeems
   def index
     @redeems = Redeem.where(user_id: @current_user.id).all
-    respond_with @redeems
+
+    respond_with @redeems.map {|r| {time: r.created_at}.merge(r.product.to_json) }
   end
 end
