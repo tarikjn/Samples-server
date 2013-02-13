@@ -4,8 +4,8 @@ class Campaign < ActiveRecord::Base
   validates :product_name, :presence => true
   validates :barcode, :presence => true
   # iPhone 5 portrait resolution 640 x 1136
-  validates_property :height, :of => :splash_image, :in => [1136]
   validates_property :width, :of => :splash_image, :in => [640]
+  validates_property :height, :of => :splash_image, :in => [1136]
   validates_property :width, :of => :small_image, :in => [50]
   validates_property :height, :of => :small_image, :in => [50]
 
@@ -19,8 +19,9 @@ class Campaign < ActiveRecord::Base
     self.active ? 'active':'inactive'
   end
 
-  def scan_count
-    0
+  # replace by has_many?
+  def scans
+    Scan.where(barcode: self.barcode).all
   end
 
   def to_json # wrong naming/format
