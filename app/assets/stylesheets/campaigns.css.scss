@@ -2,6 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin button {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #F4F4F4;
+  text-decoration: none;
+
+  &:hover {
+    background: #0000CD;
+    color: white;
+    cursor: pointer;
+  }
+}
+
 .head {
   position: relative;
   border-bottom: 2px solid #ddd;
@@ -15,18 +29,9 @@
     position: absolute;
     right: 0;
     top: 0;
-  }
 
-  // make into mixin
-  .action {
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    border-radius: 8px;
-    background: #F4F4F4;
-    text-decoration: none;
-
-    &:hover {
-      background: #0000CD;
+    .action {
+      @include button;
     }
   }
 }
@@ -79,5 +84,86 @@ table {
       }
     }
     
+  }
+}
+
+form {
+  .field {
+    $label-margin: 120px;
+
+    margin-left: $label-margin;
+    
+
+    label {
+      color: gray;
+      position: absolute;
+      margin-left: -$label-margin;
+    }
+
+    .field-tip {
+      position: relative;
+      margin: 6px 2px 0;
+      //display: inline-block;
+      .content {
+        display: inline-block;
+        background: #fafafa;
+        font-size: 70%;
+        padding: 2px 5px;
+        color: #bbb;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        em {
+          color: gray;
+          font-style: normal;
+        }
+
+        &:before {
+          position: absolute;
+          content: "▲";
+          top: -12px;
+          color: #eee;
+        }
+      }
+      
+    }
+
+  }
+  .actions {
+    margin-top: 25px;
+    border-top: 1px solid #eee;
+    padding-top: 5px;
+    text-align: right;
+
+    button {
+      @include button;
+      font-size: 120%;
+    }
+  }
+}
+
+.product-image-stencil {
+  img {
+    border: 1px dotted gray;
+    border-radius: 8px;
+  }
+}
+
+.iphone-stencil {
+  height: 369px;
+  background: url(/assets/iphone4-stencil.png) no-repeat;
+
+  img {
+    margin: 64px 0 0 20px;
+  }
+}
+
+// campaign > show
+.property {
+  $margin: 150px;
+  margin: 1em 0 1em $margin;
+  .label {
+    position: absolute;
+    margin-left: -$margin;
+    color: gray;
   }
 }

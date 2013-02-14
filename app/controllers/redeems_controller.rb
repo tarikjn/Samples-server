@@ -24,7 +24,7 @@ class RedeemsController < ApplicationController
     end
   end
 
-  # GET /redeems
+  # GET /redeems TODO: order by latest first
   def index
     @redeems = Redeem.where(user_id: @current_user.id).all
 

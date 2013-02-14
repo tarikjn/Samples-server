@@ -1,21 +1,26 @@
+.head
+  %h1
+    = link_to 'Campaigns', campaigns_path
+    &gt;
+    = @campaign.product_name
+  .add= link_to 'Edit', edit_campaign_path(@campaign), :class => 'action'
+
 %p#notice= notice
 
-%p
-  %b Product name:
+.property
+  .label Product name:
   = @campaign.product_name
-%p
-  %b Barcode:
+.property
+  .label Barcode:
   = @campaign.barcode
-%p
-  %b Small image:
-  = image_tag @campaign.small_image.url
-%p
-  %b Splash image:
-  = image_tag @campaign.splash_image.url
-%p
-  %b Active:
+.property
+  .label Small image:
+  .product-image-stencil
+    = image_tag @campaign.small_image.url
+.property
+  .label Splash image:
+  .iphone-stencil
+    = image_tag @campaign.splash_image.convert('-resize 25% -crop 160x240+0+44').url
+.property
+  .label Active:
   = @campaign.active
-
-= link_to 'Edit', edit_campaign_path(@campaign)
-\|
-= link_to 'Back', campaigns_path

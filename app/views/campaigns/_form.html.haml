@@ -8,25 +8,40 @@
 
   .field
     = f.label :product_name
-    = f.text_field :product_name
+    = f.text_field :product_name, placeholder: "eg. Bundaberg Ginger Beer"
   .field
     = f.label :barcode
-    = f.text_field :barcode
+    = f.text_field :barcode, placeholder: "eg. 9311493000219"
   -# TODO: extract form image field into a helper
-  .field
-    = image_tag @campaign.small_image.url if @campaign.small_image_uid
   .field
     = f.label :small_image
     = f.hidden_field :retained_small_image
     = f.file_field :small_image
+    .field-tip
+      .content
+        Resolution should be
+        = succeed ', ' do
+          %em 50x50
+        larger images will be downsampled.
   .field
-    = image_tag @campaign.splash_image.url if @campaign.splash_image_uid
+    .product-image-stencil
+      = image_tag @campaign.small_image.url if @campaign.small_image_uid
   .field
     = f.label :splash_image
     = f.hidden_field :retained_splash_image
     = f.file_field :splash_image
+    .field-tip
+      .content
+        Resolution should be
+        = succeed ', ' do
+          %em 640x1136
+        larger images will be downsampled/cropped.
+  .field
+    .iphone-stencil
+      = image_tag @campaign.splash_image.convert('-resize 25% -crop 160x240+0+44').url if @campaign.splash_image_uid
   .field
     = f.label :active
     = f.check_box :active
   .actions
-    = f.submit 'Save'
+    %button{type: 'submit'}
+      Save

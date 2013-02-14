@@ -4,13 +4,20 @@ class Campaign < ActiveRecord::Base
   validates :product_name, :presence => true
   validates :barcode, :presence => true
   # iPhone 5 portrait resolution 640 x 1136
-  validates_property :width, :of => :splash_image, :in => [640]
-  validates_property :height, :of => :splash_image, :in => [1136]
-  validates_property :width, :of => :small_image, :in => [50]
-  validates_property :height, :of => :small_image, :in => [50]
+  validates :small_image, :presence => true
+  #validates_presence_of :splash_image
+  # TODO: cutom validators using :greater_than: http://stackoverflow.com/questions/4416278/min-max-validation
+  validates_property :width, :of => :splash_image, :in => (640..10000)
+  validates_property :height, :of => :splash_image, :in => (1136..10000)
+  validates_property :width, :of => :small_image, :in => (50..10000)
+  validates_property :height, :of => :small_image, :in => (50..10000)
 
-  image_accessor :small_image
-  image_accessor :splash_image
+  image_accessor :small_image do
+    after_assign :process_small_image
+  end
+  image_accessor :splash_image do
+    after_assign :process_splash_image
+  end
   attr_accessible :active, :barcode, :product_name, :small_image, :splash_image, :retained_small_image, :small_image_url, :retained_splash_image, :splash_image_url
 
   before_create :assign_owner
@@ -38,5 +45,14 @@ class Campaign < ActiveRecord::Base
 private
   def assign_owner
     self.owner_id = 0
+  end
+
+  # TODO: move to lambda, see dragonfly Model doc
+  def process_small_image
+    small_image.encode!(:png).convert!('-resize 50x50 -gravity center -background none -extent 50x50')
+  end
+
+  def process_splash_image
+    splash_image.convert!('-resize 640x1136^ -gravity center -crop 640x1136+0+0 +repage').encode!(:jpg)
   end
 end

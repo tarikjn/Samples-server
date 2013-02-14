@@ -1,7 +1,8 @@
-%h1 Editing campaign
+.head
+  %h1
+    = link_to 'Campaigns', campaigns_path
+    &gt;
+    = link_to @campaign.product_name, @campaign
+    &gt; Editing
 
 = render 'form'
-
-= link_to 'Show', @campaign
-\|
-= link_to 'Back', campaigns_path
