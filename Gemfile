@@ -10,6 +10,9 @@ gem 'pg'
 gem 'thin'
 gem 'haml'
 
+# for REST APIs
+gem 'httparty'
+
 # for image upload
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.12'

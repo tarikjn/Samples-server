@@ -32,7 +32,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def to_json # wrong naming/format
-    {
+    fields = {
       product_name: self.product_name,
       barcode: self.barcode,
       small_image: self.small_image.convert('-resize 50%').url,
