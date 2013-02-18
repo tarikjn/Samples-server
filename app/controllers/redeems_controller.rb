@@ -5,7 +5,7 @@ class RedeemsController < ApplicationController
 
   # POST /redeems
   def create
-    @product = Campaign.find_by_barcode(params[:barcode])
+    @product = Campaign.find(params[:product_id])
 
     if @product
       @prev_redeem = Redeem.where(:user_id => @current_user.id, :product_id => @product.id).first
@@ -27,7 +27,6 @@ class RedeemsController < ApplicationController
   # GET /redeems TODO: order by latest first
   def index
     @redeems = Redeem.where(user_id: @current_user.id).all
-
-    respond_with @redeems.map {|r| {time: r.created_at}.merge(r.product.to_json) }
+    render json: @redeems
   end
 end

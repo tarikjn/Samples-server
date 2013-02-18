@@ -31,10 +31,10 @@ class Campaign < ActiveRecord::Base
     Scan.where(barcode: self.barcode).all
   end
 
-  def to_json # wrong naming/format
-    fields = {
-      product_name: self.product_name,
-      barcode: self.barcode,
+  def as_json(options = {})
+    {
+      id: self.id,
+      name: self.product_name,
       small_image: self.small_image.convert('-resize 50%').url,
       small_image_retina: self.small_image.url,
       splash_image: self.splash_image.convert('-resize 50%').url,
