@@ -60,6 +60,9 @@ module Backend
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # unsupported by Heroku
+    config.assets.initialize_on_precompile = false
+
     # use haml for scaffolds
     config.generators do |g|
       g.template_engine :haml
