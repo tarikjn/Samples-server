@@ -17,7 +17,7 @@ class RedeemsController < ApplicationController
         @redeem.product = @product
         @redeem.save
 
-        render nothing: true, status: :created
+        render json: { time: @redeem.created_at }, status: :created
       end
     else
       render nothing: true, :status => 403
