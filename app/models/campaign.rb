@@ -1,6 +1,14 @@
 class Campaign < ActiveRecord::Base
   #belongs_to :brand_owner
 
+  attr_accessible :active, :barcode, :product_name, :small_image, :splash_image, :retained_small_image, :small_image_url, :retained_splash_image, :splash_image_url
+  image_accessor :small_image do
+    after_assign :process_small_image
+  end
+  image_accessor :splash_image do
+    after_assign :process_splash_image
+  end
+
   validates :product_name, :presence => true
   validates :barcode, :presence => true
   # iPhone 5 portrait resolution 640 x 1136
@@ -11,16 +19,10 @@ class Campaign < ActiveRecord::Base
   validates_property :height, :of => :splash_image, :in => (1136..10000)
   validates_property :width, :of => :small_image, :in => (50..10000)
   validates_property :height, :of => :small_image, :in => (50..10000)
-
-  image_accessor :small_image do
-    after_assign :process_small_image
-  end
-  image_accessor :splash_image do
-    after_assign :process_splash_image
-  end
-  attr_accessible :active, :barcode, :product_name, :small_image, :splash_image, :retained_small_image, :small_image_url, :retained_splash_image, :splash_image_url
-
+  
   before_create :assign_owner
+
+  scope :active, where(:active => true)
 
   def status_caption
     self.active ? 'active':'inactive'

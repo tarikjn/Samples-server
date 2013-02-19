@@ -11,9 +11,10 @@ class ScansController < ApplicationController
     @scan.user = @current_user
     @scan.save
 
-    @product = Campaign.find_by_barcode(params[:barcode])
+    @product = Campaign.active.find_by_barcode(params[:barcode])
 
     if @product
+      # TODO: user_can_redeem? method on model
       @redeem = Redeem.where(:user_id => @current_user.id, :product_id => @product.id).first
       status = @redeem ? 403 : 200
 

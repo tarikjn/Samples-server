@@ -5,7 +5,7 @@ class RedeemsController < ApplicationController
 
   # POST /redeems
   def create
-    @product = Campaign.find(params[:product_id])
+    @product = Campaign.active.find(params[:product_id])
 
     if @product
       @prev_redeem = Redeem.where(:user_id => @current_user.id, :product_id => @product.id).first
