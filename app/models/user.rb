@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   def self.create_from_facebook_response(facebook_access_token, facebook_response)
     # count the user's friends, TODO: thread it?
-    friends_response = HTTParty.get("https://graph.facebook.com/me/friends?access_token=#{facebook_access_token}")
+    friends_response = Facebook.new(facebook_access_token).get("/me/friends")
     raise "new user friends_response issue" unless friends_response.code == 200
 
     # create new class instance and return it

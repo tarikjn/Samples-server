@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     # TODO: wrap into Facebook class?
-    fb_response = HTTParty.get("https://graph.facebook.com/me?access_token=#{params[:facebook_access_token]}")
+    fb_response = Facebook.new(params[:facebook_access_token]).get("/me")
     
     # TODO: handle errors, security
 
