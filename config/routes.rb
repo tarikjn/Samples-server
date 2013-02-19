@@ -8,7 +8,12 @@ Backend::Application.routes.draw do
   resources :users
 
 
-  resources :campaigns
+  resources :campaigns do
+    member do
+      get 'small_image(:format)' => :small_image
+      get 'splash_image(:format)' => :splash_image
+    end
+  end
 
 
   # The priority is based upon order of creation:

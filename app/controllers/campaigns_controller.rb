@@ -80,4 +80,15 @@ class CampaignsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # TODO: dry up?
+  def small_image
+    @campaign = Campaign.find(params[:id])
+    redirect_to params[:format] == '@2x' ? @campaign.small_image_retina_url : @campaign.small_image_url
+  end
+
+  def splash_image
+    @campaign = Campaign.find(params[:id])
+    redirect_to params[:format] == '@2x' ? @campaign.splash_image_retina_url : @campaign.splash_image_url
+  end
 end

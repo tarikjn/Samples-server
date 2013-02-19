@@ -33,15 +33,32 @@ class Campaign < ActiveRecord::Base
     Scan.where(barcode: self.barcode).all
   end
 
+  # TODO: add dragonfly class helper to do .convert('-resize 50%')
   def as_json(options = {})
     {
       id: self.id,
       name: self.product_name,
-      small_image: self.small_image.convert('-resize 50%').url,
-      small_image_retina: self.small_image.url,
-      splash_image: self.splash_image.convert('-resize 50%').url,
-      splash_image_retina: self.splash_image.url
+      small_image: self.small_image_url,
+      small_image_retina: self.small_image_retina_url,
+      splash_image: self.splash_image_url,
+      splash_image_retina: self.splash_image_retina_url
     }
+  end
+
+  # method to avoid repeating .convert('-resize 50%')
+  def small_image_url
+    self.small_image.convert('-resize 50%').url
+  end
+  def small_image_retina_url
+    self.small_image.url
+  end
+
+  # method to support default images
+  def splash_image_url
+    self.splash_image ? self.splash_image.convert('-resize 50%').url : '/assets/campaigns/splash_default.jpg'
+  end
+  def splash_image_retina_url
+    self.splash_image ? self.splash_image.url : '/assets/campaigns/splash_default@2x.jpg'
   end
 
 private
