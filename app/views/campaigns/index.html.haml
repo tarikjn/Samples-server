@@ -10,7 +10,7 @@
       %td.status= campaign.status_caption
       %td.count
         = link_to "#" do
-          %span.scan-count= campaign.scans.count
-          = 'scan'.pluralize campaign.scans.count
+          %span.scan-count= campaign.redeems.count
+          = 'redeem'.pluralize campaign.redeems.count
       %td.action= link_to 'Edit', edit_campaign_path(campaign)
       %td.action= link_to 'Delete', campaign, method: :delete, data: { confirm: 'Are you sure?' }

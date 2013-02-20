@@ -1,5 +1,6 @@
 class Campaign < ActiveRecord::Base
   #belongs_to :brand_owner
+  has_many :redeems, :foreign_key => "product_id"
 
   attr_accessible :active, :barcode, :product_name, :small_image, :splash_image, :retained_small_image, :small_image_url, :retained_splash_image, :splash_image_url
   image_accessor :small_image do
