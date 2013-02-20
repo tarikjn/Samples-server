@@ -9,7 +9,7 @@
       %td.title= link_to campaign.product_name, campaign
       %td.status= campaign.status_caption
       %td.count
-        = link_to "#" do
+        = link_to people_campaign_redeems_path(campaign) do
           %span.scan-count= campaign.redeems.count
           = 'redeem'.pluralize campaign.redeems.count
       %td.action= link_to 'Edit', edit_campaign_path(campaign)

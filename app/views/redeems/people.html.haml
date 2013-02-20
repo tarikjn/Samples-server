@@ -1,0 +1,19 @@
+.head
+  %h1
+    = link_to 'Campaigns', campaigns_path
+    &gt;
+    = link_to @campaign.product_name, @campaign
+    &gt;
+    Redeems
+
+.people
+  - @redeems.each do |redeem|
+    .people
+      = image_tag "http://graph.facebook.com/#{redeem.user.facebook_id}/picture?width=100&height=100"
+      .name= redeem.user.name
+      .info
+        = redeem.user.age
+        ,
+        = redeem.user.gender
+      .friends
+        = redeem.user.friends_count friends

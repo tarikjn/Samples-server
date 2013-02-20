@@ -4,6 +4,15 @@ class User < ActiveRecord::Base
   validates :gender, :inclusion => {:in => %w(male female)}
   # TODO: add fb_token update time
 
+  def name
+    first_name + ' ' + last_name
+  end
+
+  def age
+    now = Time.now.utc.to_date
+    now.year - birthday.year - ((now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1)
+  end
+
   def self.create_from_facebook_response(facebook_access_token, facebook_response)
     # count the user's friends, TODO: thread it?
     friends_response = Facebook.new(facebook_access_token).get("/me/friends")

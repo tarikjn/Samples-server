@@ -13,6 +13,12 @@ Backend::Application.routes.draw do
       get 'small_image(:format)' => :small_image
       get 'splash_image(:format)' => :splash_image
     end
+    resources :redeems do
+      collection do
+        get 'people'
+        get 'stats'
+      end
+    end
   end
 
   constraints :subdomain => ['api', 'staging-api'] do

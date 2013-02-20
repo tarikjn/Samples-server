@@ -1,5 +1,5 @@
 class RedeemsController < ApplicationController
-  before_filter :restrict_access
+  before_filter :restrict_access, :only => [:create, :index]
   respond_to :json
   skip_before_filter :verify_authenticity_token
 
@@ -28,5 +28,16 @@ class RedeemsController < ApplicationController
   def index
     @redeems = Redeem.where(user_id: @current_user.id).all
     render json: @redeems
+  end
+
+  # GET /campaign/:campaign_id/redeems/people
+  def people
+    @campaign = Campaign.find(params[:campaign_id])
+    @redeems = @campaign.redeems
+  end
+
+  # GET /campaign/:campaign_id/redeems/stats
+  def stats
+
   end
 end
