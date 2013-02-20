@@ -15,6 +15,12 @@ Backend::Application.routes.draw do
     end
   end
 
+  constraints :subdomain => ['api', 'staging-api'] do
+    # iOS API
+    scope :module => 'api' do
+    end
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
