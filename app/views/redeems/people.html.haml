@@ -8,12 +8,13 @@
 
 .people
   - @redeems.each do |redeem|
-    .people
-      = image_tag "http://graph.facebook.com/#{redeem.user.facebook_id}/picture?width=100&height=100"
+    .profile
+      = image_tag "http://graph.facebook.com/#{redeem.user.facebook_id}/picture?width=80&height=80"
       .name= redeem.user.name
       .info
-        = redeem.user.age
-        ,
+        = succeed ', ' do
+          = redeem.user.age
         = redeem.user.gender
       .friends
-        = redeem.user.friends_count friends
+        = redeem.user.facebook_friends_count
+        friends

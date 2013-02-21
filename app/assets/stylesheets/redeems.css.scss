@@ -1,3 +1,22 @@
 // Place all the styles related to the Redeems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.people {
+  .profile {
+    width: 100px;
+    padding: 10px 0;
+    margin-right: 10px;
+    text-align: center;
+    float: left;
+    //background: #f8f8f8;
+    border: 1px outset #ccc;
+    border-radius: 2px;
+    .name {
+      //font-weight: bold;
+    }
+    .info, .friends {
+      font-size: 75%;
+    }
+  }
+}
