@@ -9,7 +9,7 @@
 .people
   - @redeems.each do |redeem|
     .profile
-      = image_tag "http://graph.facebook.com/#{redeem.user.facebook_id}/picture?width=80&height=80"
+      = image_tag "https://graph.facebook.com/#{redeem.user.facebook_id}/picture?width=80&height=80"
       .name= redeem.user.name
       .info
         = succeed ', ' do
