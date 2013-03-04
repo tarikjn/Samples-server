@@ -1,12 +1,15 @@
 !!! 5
 %html
   %head
-    %title AirSample
+    %title Free99
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     .header
-      .logo= link_to "AirSample", root_path
+      .logo
+        = link_to root_path do
+          = precede 'free' do
+            %sup= "99"
     .page
       = yield
